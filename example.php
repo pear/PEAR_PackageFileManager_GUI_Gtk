@@ -18,8 +18,7 @@
  * @package    PEAR_PackageFileManager_GUI_Gtk
  * @copyright  &copy; (c) Copyright 2005 Scott Mattocks
  * @license    PHP 3.0
- */
-/**
+ *
  * Sorry about all of that other stuff. It needed to be added for 
  * completeness' sake. You are reading this file because you want
  * to know how to use PFM_Gtk. It's easy. In fact you can just 

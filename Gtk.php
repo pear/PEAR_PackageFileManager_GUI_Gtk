@@ -121,7 +121,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * way down to the very last child widget. For more info please
      * see the PHP-GTK website {@link http://gtk.php.net}
      * 
-     * @param  none
      * @return void
      * @access public
      */
@@ -143,7 +142,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * even pull the child from the window and embed the
      * rest of this application in itself.
      * 
-     * @param  none
      * @return &object
      * @access public
      */
@@ -164,7 +162,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * don't know that that information is necessarily part of
      * this package. 
      *
-     * @param  none
      * @return void
      * @access public
      */
@@ -238,11 +235,13 @@ class PEAR_PackageFileManager_GUI_Gtk {
     function showWarnings($message = NULL)
     {
         if (!empty($message)) {
-            $this->warningsArea->insert_text($message . "\n", $this->warningsArea->get_length());
+            $this->warningsArea->insert_text($message . "\n",
+                                             $this->warningsArea->get_length());
         }
 
         foreach ($this->_packageFileManager->getWarnings() as $warning) {
-            $this->warningsArea->insert_text($warning['message'] . "\n----\n", $this->warningsArea->get_length());
+            $this->warningsArea->insert_text($warning['message'] . "\n----\n",
+                                             $this->warningsArea->get_length());
         }
     }
 
@@ -271,7 +270,8 @@ class PEAR_PackageFileManager_GUI_Gtk {
             $dialog =& new GtkDialog();
             
             $vBox = $dialog->vbox;
-            $vBox->pack_start(new GtkLabel('Your package file has not been saved. Would you like to save it now?'));
+            $vBox->pack_start(new GtkLabel('Your package file has not been saved.' . 
+                                           ' Would you like to save it now?'));
             
             $dialog->show_all();
             gtk::main();
@@ -319,7 +319,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * dialogs. The menu should also have an about option and
      * an exit option.
      * 
-     * @param  none
      * @return object  A container holding the menu.
      * @access private
      */
@@ -347,7 +346,8 @@ class PEAR_PackageFileManager_GUI_Gtk {
         $preview      =& new GtkMenuItem('');
         $previewLabel =  $preview->child;
         $previewKey   =  $previewLabel->parse_uline('_Preview');
-        $preview->add_accelerator('activate', $accel, $previewKey, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+        $preview->add_accelerator('activate', $accel, $previewKey,
+                                  GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
         $preview->lock_accelerators();
         $preview->connect_object('activate', array(&$this, '_previewFile'));
         $fileMenu->append($preview);
@@ -356,7 +356,8 @@ class PEAR_PackageFileManager_GUI_Gtk {
         $save      =& new GtkMenuItem('');
         $saveLabel =  $save->child;
         $saveKey   =  $saveLabel->parse_uline('_Save');
-        $save->add_accelerator('activate', $accel, $saveKey, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+        $save->add_accelerator('activate', $accel, $saveKey,
+                               GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
         $save->lock_accelerators();
         $save->connect_object('activate', array(&$this, '_writePackageFile'));
         $fileMenu->append($save);
@@ -365,7 +366,8 @@ class PEAR_PackageFileManager_GUI_Gtk {
         $package      =& new GtkMenuItem('');
         $packageLabel =  $package->child;
         $packageKey   =  $packageLabel->parse_uline('P_ackage');
-        $package->add_accelerator('activate', $accel, $packageKey, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+        $package->add_accelerator('activate', $accel, $packageKey,
+                                  GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
         $package->lock_accelerators();
         $package->connect_object('activate', array(&$this, '_packagePackage'));
         $fileMenu->append($package);
@@ -393,7 +395,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * is used. This lets the user appear to be working through
      * a wizard when they are actually just changing pages.
      *
-     * @param  none
      * @return &object
      * @access private
      */
@@ -461,7 +462,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * Package options are those such as: base install directory,
      * the license, the package name, etc.
      *
-     * @param  none
      * @return array
      * @access private
      */
@@ -494,7 +494,8 @@ class PEAR_PackageFileManager_GUI_Gtk {
 
         // Make the ok button set the entry value.
         $okButton = $packageDirFS->ok_button;
-        $okButton->connect_object('clicked', array(&$this, '_setPackageDirEntry'), $packageDirEntry, $packageDirFS);
+        $okButton->connect_object('clicked', array(&$this, '_setPackageDirEntry'),
+                                  $packageDirEntry, $packageDirFS);
 
         // Make the cancel button hide the selection.
         $cancelButton = $packageDirFS->cancel_button;
@@ -556,14 +557,18 @@ class PEAR_PackageFileManager_GUI_Gtk {
 
         // We need a button to do the work.
         $submitButton =& new GtkButton('Submit');
-        $submitButton->connect_object('clicked', array(&$this, '_setPackageOptions'), $packageDirEntry, $packageNameEntry, $baseEntry, $summaryEntry, $descriptionText);
+        $submitButton->connect_object('clicked', array(&$this, '_setPackageOptions'),
+                                      $packageDirEntry, $packageNameEntry, $baseEntry,
+                                      $summaryEntry, $descriptionText);
 
         $submitBox =& new GtkHBox();
         $submitBox->pack_end($submitButton, false, false, 5);
 
         // Import the options if there is a package.xml file
         // in the package directory.
-        $packageDirEntry->connect('changed', array(&$this, '_importPackageOptions'), $packageNameEntry, $baseEntry, $summaryEntry, $descriptionText);
+        $packageDirEntry->connect('changed', array(&$this, '_importPackageOptions'),
+                                  $packageNameEntry, $baseEntry, $summaryEntry,
+                                  $descriptionText);
 
         // Pack everything away.
         $mainVBox->pack_start($packageDirHBox, false, false, 3);
@@ -587,7 +592,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * Options that do not relate to individual releases are
      * covered on a seperate page. 
      * 
-     * @param  none
      * @return array
      * @access private
      */
@@ -653,7 +657,8 @@ class PEAR_PackageFileManager_GUI_Gtk {
 
         // We need a button to do the work.
         $submitButton =& new GtkButton('Submit');
-        $submitButton->connect_object('clicked', array(&$this, '_setReleaseOptions'), $stateCombo, $verEntry, $notes);
+        $submitButton->connect_object('clicked', array(&$this, '_setReleaseOptions'),
+                                      $stateCombo, $verEntry, $notes);
 
         $submitBox =& new GtkHBox();
         $submitBox->pack_end($submitButton, false, false, 5);
@@ -675,7 +680,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * editable. The button should clear the text area of any
      * warnings.
      *
-     * @param  none
      * @return array
      * @access private
      */
@@ -713,7 +717,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * GtkCombo which doesn't allow the user to enter anything
      * that is not a valid role.
      *
-     * @param  none
      * @return array
      * @access private
      */
@@ -773,7 +776,9 @@ class PEAR_PackageFileManager_GUI_Gtk {
 
         // We need a button to do the work.
         $button =& new GtkButton('Add Maintainer');
-        $button->connect_object('clicked', array(&$this, '_addMaintainer'), $handleEntry, $roleCombo, $nameEntry, $emailEntry, $currentList);
+        $button->connect_object('clicked', array(&$this, '_addMaintainer'),
+                                $handleEntry, $roleCombo, $nameEntry,
+                                $emailEntry, $currentList);
 
         // Put it all together.
         // All of the labels should be aligned.
@@ -818,7 +823,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * packages selected as dependencies, a button to clear
      * the selected list and a button to add the dependencies.
      *
-     * @param  none
      * @return array
      * @access private
      */
@@ -847,7 +851,8 @@ class PEAR_PackageFileManager_GUI_Gtk {
         // Create the tree.
         $cTree =& new GtkCTree(1, 0);
         $cTree->set_line_style(GTK_CTREE_LINES_SOLID);
-        $root  =& $cTree->insert_node(NULL, NULL, array('Packages'), 0, NULL, NULL, NULL, NULL, NULL, NULL);
+        $root  =& $cTree->insert_node(NULL, NULL, array('Packages'), 0,
+                                      NULL, NULL, NULL, NULL, NULL, NULL);
 
         // Use PEAR_Registry to build the tree.
         require_once 'PEAR/Registry.php';
@@ -862,19 +867,29 @@ class PEAR_PackageFileManager_GUI_Gtk {
                 continue;
             }
 
-            $name    =& $cTree->insert_node($root, NULL, array($package['package']), 0, NULL, NULL, NULL, NULL, NULL, NULL);
-            $version =& $cTree->insert_node($name, NULL, array($package['version']), 0, NULL, NULL, NULL, NULL, NULL, NULL);
+            $name    =& $cTree->insert_node($root, NULL, array($package['package']),
+                                            0, NULL, NULL, NULL, NULL, NULL, NULL);
+            $version =& $cTree->insert_node($name, NULL, array($package['version']),
+                                            0, NULL, NULL, NULL, NULL, NULL, NULL);
 
             // Set some data so that we can tell what the user
             // selected later.
-            $cTree->node_set_row_data($version, array($package['package'], $package['version'], ''));
+            $cTree->node_set_row_data($version, array($package['package'],
+                                                      $package['version'],
+                                                      ''));
             
             // Add the older versions if there are any.
             if (count($package['changelog'])) {
                 foreach($package['changelog'] as $change) {
                     if ($change['version'] != $package['version']) {
-                        $oldVersion =& $cTree->insert_node($name, NULL, array($change['version']), 0, NULL, NULL, NULL, NULL, NULL, NULL);
-                        $cTree->node_set_row_data($oldVersion, array($package['package'], $change['version'], ''));
+                        $oldVersion =& $cTree->insert_node($name, NULL,
+                                                           array($change['version']),
+                                                           0, NULL, NULL, NULL,
+                                                           NULL, NULL, NULL);
+                        $cTree->node_set_row_data($oldVersion, 
+                                                  array($package['package'],
+                                                        $change['version'],
+                                                        ''));
                     }
                 }
             }
@@ -916,18 +931,25 @@ class PEAR_PackageFileManager_GUI_Gtk {
         // Clearing dependencies already in a package file
         // is not possible.
         $clearButton->connect_object('clicked', array(&$cList, 'clear'));
-        $clearButton->connect_object('clicked', array(&$this->_packageFileManager, 'setOptions'), $this->_options + array('deps' => array()));
+        $clearButton->connect_object('clicked',
+                                     array(&$this->_packageFileManager, 'setOptions'),
+                                     $this->_options + array('deps' => array()));
 
         // The auto detect button should be connected to the PFM
         // detectDependencies method.
-        $autoButton->connect_object('clicked', array(&$this->_packageFileManager, 'detectDependencies'));
+        $autoButton->connect_object('clicked',
+                                    array(&$this->_packageFileManager, 'detectDependencies'));
 
         // We need to let the user know that it did something.
-        $autoButton->connect_object_after('clicked', array(&$this, '_getDependencies'), $cList);
+        $autoButton->connect_object_after('clicked',
+                                          array(&$this, '_getDependencies'),
+                                          $cList);
 
         // The add button should add the dependencies from the cList
         // to the package. 
-        $addButton->connect_object('clicked', array(&$this, '_addDependencies'), $cList);
+        $addButton->connect_object('clicked',
+                                   array(&$this, '_addDependencies'),
+                                   $cList);
 
         // Pack everything away.
         $treeScrolledWindow->add($cTree);
@@ -961,7 +983,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * number in the about window so that I don't have to go and
      * recode that every time.
      *
-     * @param  none
      * @return array   The page container and a label for the tab.
      * @access private
      */
@@ -1073,7 +1094,9 @@ class PEAR_PackageFileManager_GUI_Gtk {
 
         // When the entry's value changes, we want to change the
         // to widget.
-        $globalTypeEntry->connect('changed', array(&$this, '_switchToWidget'), $globalToWidgets, $globalToWidgetBox);
+        $globalTypeEntry->connect('changed',
+                                  array(&$this, '_switchToWidget'),
+                                  $globalToWidgets, $globalToWidgetBox);
 
         // Add the globalTypes to the select box.
         $globalTypes = array('php-const', 'pear-config', 'package-info');
@@ -1099,7 +1122,11 @@ class PEAR_PackageFileManager_GUI_Gtk {
         $globalButtonBox =& new GtkHBox();
         $globalAddButton =& new GtkButton('Add Replacement');
         
-        $globalAddButton->connect_object('clicked', array($this, '_addReplacement'), NULL, $globalTypeCombo, $globalToWidgetBox, $globalFromEntry, $globalSuccess);
+        $globalAddButton->connect_object('clicked',
+                                         array($this, '_addReplacement'),
+                                         NULL, $globalTypeCombo,
+                                         $globalToWidgetBox, $globalFromEntry,
+                                         $globalSuccess);
         
         $globalButtonBox->pack_end($globalAddButton, false, false, 5);
 
@@ -1217,7 +1244,8 @@ class PEAR_PackageFileManager_GUI_Gtk {
 
         // When the entry's value changes, we want to change the
         // to widget.
-        $fileTypeEntry->connect('changed', array(&$this, '_switchToWidget'), $fileToWidgets, $fileToWidgetBox);
+        $fileTypeEntry->connect('changed', array(&$this, '_switchToWidget'),
+                                $fileToWidgets, $fileToWidgetBox);
 
         // Add the fileTypes to the select box.
         $fileTypes = array('php-const', 'pear-config', 'package-info');
@@ -1243,7 +1271,9 @@ class PEAR_PackageFileManager_GUI_Gtk {
         $fileButtonBox =& new GtkHBox();
         $fileAddButton =& new GtkButton('Add Replacement');
         
-        $fileAddButton->connect_object('clicked', array($this, '_addReplacement'), $fileFileCombo, $fileTypeCombo, $fileToWidgetBox, $fileFromEntry, $fileSuccess);
+        $fileAddButton->connect_object('clicked', array($this, '_addReplacement'),
+                                       $fileFileCombo, $fileTypeCombo, $fileToWidgetBox,
+                                       $fileFromEntry, $fileSuccess);
         
         $fileButtonBox->pack_end($fileAddButton, false, false, 5);
 
@@ -1449,7 +1479,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      *
      * The file should always be previewed before it is saved.
      * 
-     * @param  none
      * @return void
      * @access private
      * @see    _writePackageFile()
@@ -1542,7 +1571,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * If there are problems writing the file, the user will 
      * be taken to the warnings page.
      * 
-     * @param  none
      * @return void
      * @access private
      * @see    _previewPackageFile()
@@ -1575,7 +1603,6 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * would do but doesn't require the user to use the command
      * line. 
      * 
-     * @param  none
      * @return void
      * @access private
      */
@@ -1619,7 +1646,10 @@ class PEAR_PackageFileManager_GUI_Gtk {
     {
         $options = $this->_packageFileManager->getOptions();
         foreach ($options['deps'] as $dep) {
-            $this->_addToCList($cList, array($dep['name'], $dep['version'], ($dep['optional'] == 'yes' ? 'optional' : '')));
+            $this->_addToCList($cList, array($dep['name'], $dep['version'],
+                                             ($dep['optional'] == 'yes' ? 'optional' : '')
+                                             )
+                               );
         }
 
     }
@@ -1712,7 +1742,9 @@ class PEAR_PackageFileManager_GUI_Gtk {
         
         // Make sure something was selected.
         if (!isset($type) || !isset($to) || !isset($from)) {
-            $this->showWarnings((isset($pathWidget) ? 'File' : 'Global') . ' Replacement information is missing. Please make sure all fields are filled.');
+            $this->showWarnings((isset($pathWidget) ? 'File' : 'Global') .
+                                ' Replacement information is missing.' . 
+                                ' Please make sure all fields are filled.');
         }
 
         // Figure out which type of replacement this is <global|file>.
@@ -1857,7 +1889,10 @@ class PEAR_PackageFileManager_GUI_Gtk {
             $optional = $cList->get_text($i, 2);
 
             // Attempt to add the package as a dependency.
-            $result = $this->_packageFileManager->addDependency($cList->get_text($i, 0), $cList->get_text($i, 1), 'ge', 'pkg', !empty($optional));
+            $result = $this->_packageFileManager->addDependency($cList->get_text($i, 0),
+                                                                $cList->get_text($i, 1),
+                                                                'ge', 'pkg',
+                                                                !empty($optional));
             
             // Check for errors.
             if (PEAR::isError($result)) {
@@ -1913,7 +1948,8 @@ class PEAR_PackageFileManager_GUI_Gtk {
         }
         
         // Add the maintainer.
-        $result = $this->_packageFileManager->addMaintainer($handleText, $roleText, $nameText, $emailText);
+        $result = $this->_packageFileManager->addMaintainer($handleText, $roleText,
+                                                            $nameText, $emailText);
         
         // Check for errors.
         if (PEAR::isError($result)) {
@@ -1965,7 +2001,8 @@ class PEAR_PackageFileManager_GUI_Gtk {
      * @return void
      * @access private
      */
-    function _importPackageOptions($packageDirEntry, $packageNameEntry, $baseEntry, $summaryEntry, $descriptionText)
+    function _importPackageOptions($packageDirEntry, $packageNameEntry,
+                                   $baseEntry, $summaryEntry, $descriptionText)
     {
         // Figure out if there is a package file in the given
         // directory.
