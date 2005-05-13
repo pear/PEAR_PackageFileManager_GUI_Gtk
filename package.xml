@@ -26,11 +26,11 @@ Features:
   </maintainer>
   </maintainers>
  <release>
-  <version>1.0.0rc1</version>
-  <date>2005-04-13</date>
+  <version>1.0.0</version>
+  <date>2005-05-13</date>
   <license>PHP License</license>
-  <state>beta</state>
-  <notes>Removed work around for importing options. Bug in PEAR_PackageFileManager has been fixed.
+  <state>stable</state>
+  <notes>No issues reported for one month. A stable release is due.
   </notes>
   <deps>
    <dep type="pkg" rel="ge" version="1.5.1" optional="no">PEAR_PackageFileManager</dep>
@@ -103,6 +103,13 @@ Final version before PEPr::CfV
     <date>2005-04-13</date>
     <state>beta</state>
     <notes>Removed work around for importing options. Bug in PEAR_PackageFileManager has been fixed.
+    </notes>
+   </release>
+   <release>
+    <version>1.0.0</version>
+    <date>2005-05-13</date>
+    <state>stable</state>
+    <notes>No issues reported for one month. A stable release is due.
     </notes>
    </release>
  </changelog>
