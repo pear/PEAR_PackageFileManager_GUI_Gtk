@@ -26,11 +26,11 @@ Features:
   </maintainer>
   </maintainers>
  <release>
-  <version>1.0.0</version>
-  <date>2005-05-13</date>
+  <version>1.0.1</version>
+  <date>2005-05-17</date>
   <license>PHP License</license>
   <state>stable</state>
-  <notes>No issues reported for one month. A stable release is due.
+  <notes>Fix bug #4366: Bad md5sum.
   </notes>
   <deps>
    <dep type="pkg" rel="ge" version="1.5.1" optional="no">PEAR_PackageFileManager</dep>
@@ -44,11 +44,11 @@ Features:
   <provides type="function" name="PEAR_PackageFileManager_GUI_Gtk::showWarnings" />
   <provides type="function" name="PEAR_PackageFileManager_GUI_Gtk::checkBeforeQuit" />
   <filelist>
-   <file role="doc" baseinstalldir="/PEAR/PackageFileManager/GUI/" md5sum="df55646ef0e6475fab6fc8e08ba39cc6" name="example.php">
+   <file role="doc" baseinstalldir="/PEAR/PackageFileManager/GUI/" name="example.php">
     <replace type="package-info" from="@version@" to="version"/>
     <replace type="package-info" from="@summary@" to="summary"/>
    </file>
-   <file role="php" baseinstalldir="/PEAR/PackageFileManager/GUI/" md5sum="7962cf6e2aca6be6e90ada479fdfe505" name="Gtk.php">
+   <file role="php" baseinstalldir="/PEAR/PackageFileManager/GUI/" name="Gtk.php">
     <replace type="package-info" from="@summary@" to="summary"/>
     <replace type="package-info" from="@version@" to="version"/>
    </file>
@@ -110,6 +110,13 @@ Final version before PEPr::CfV
     <date>2005-05-13</date>
     <state>stable</state>
     <notes>No issues reported for one month. A stable release is due.
+    </notes>
+   </release>
+   <release>
+    <version>1.0.1</version>
+    <date>2005-05-17</date>
+    <state>stable</state>
+    <notes>Fix bug #4366: Bad md5sum.
     </notes>
    </release>
  </changelog>
