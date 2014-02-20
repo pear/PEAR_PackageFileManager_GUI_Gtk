@@ -1,0 +1,25 @@
+{
+    "authors": [
+        {
+            "email": "scottmattocks@php.net",
+            "name": "Scott Mattocks",
+            "role": "Lead"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "./"
+        ]
+    },
+    "description": "More info available on: http://pear.php.net/package/PEAR_PackageFileManager_GUI_Gtk",
+    "license": "PHP License",
+    "name": "pear/pear_packagefilemanager_gui_gtk",
+    "support": {
+        "issues": "http:///bugs/search.php?cmd=display&package_name[]=PEAR_PackageFileManager_GUI_Gtk",
+        "source": "https://github.com/pear/PEAR_PackageFileManager_GUI_Gtk"
+    },
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
